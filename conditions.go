@@ -12,7 +12,6 @@ import (
 	"strings"
 
 	"github.com/Mashatan/asn1"
-	"github.com/kalaspuffar/base64url"
 	"github.com/pkg/errors"
 )
 
@@ -69,7 +68,7 @@ func (c *Conditions) generateURI() string {
 	params.Set("cost", fmt.Sprintf("%d", c.Cost()))
 	params.Set("fpt", strings.ToLower(c.Type().String()))
 
-	encodedFingerprint := base64url.Encode(c.Fingerprint())
+	encodedFingerprint := Base64UrlEncode(c.Fingerprint())
 	uri := url.URL{
 		Scheme:   "ni",
 		Path:     "/sha-256;" + encodedFingerprint,
