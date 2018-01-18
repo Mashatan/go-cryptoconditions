@@ -49,8 +49,8 @@ func TestEd25519sha256(t *testing.T) {
 	kk := ee.Condition().URI()
 	t.Log("Condition : ", kk)
 
-	vv, _ := NewEd25519Sha256(pubInner, privInner)
-	vv.DecodeFulfillment(tt)
+	//vv, _ := NewEd25519Sha256(pubInner, privInner)
+	//vv.DecodeFulfillment(tt)
 	//t.Log("Public key orginal  : ", base58.Encode(pubInner))
 	//t.Log("Public key extract  : ", base58.Encode(vv.asn1.PublicKey))
 	/*if !bytes.Equal(vv.asn1.PublicKey, []byte(pubInner)) {

@@ -118,8 +118,8 @@ func (f Ed25519Sha256) buildASN1Context() *asn1.Context {
 }
 
 func (f Ed25519Sha256) encodeFulfillment() ([]byte, error) {
-	encoded, err := f.asn1Context.Encode(
-		f.asn1)
+	encoded, err := f.asn1Context.EncodeWithOptions(
+		f.asn1, "choice:fulfillment")
 	if err != nil {
 		return nil, errors.Wrap(err, "ASN.1 encoding failed")
 	}

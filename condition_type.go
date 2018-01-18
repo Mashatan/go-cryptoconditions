@@ -9,8 +9,8 @@ import "fmt"
 type ConditionType int
 
 const (
-	CTThresholdSha256 ConditionType = iota
-	CTEd25519Sha256
+	CTThresholdSha256 ConditionType = 2
+	CTEd25519Sha256   ConditionType = 4
 	nbKnownConditionTypes
 )
 
