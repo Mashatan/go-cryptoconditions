@@ -7,7 +7,6 @@ package GoCryptoConditions
 import (
 	"bytes"
 	"fmt"
-	"net/url"
 	"reflect"
 	"strings"
 
@@ -64,18 +63,9 @@ func (c *Conditions) Encode() ([]byte, error) {
 }
 
 func (c *Conditions) generateURI() string {
-	params := make(url.Values)
-	params.Set("cost", fmt.Sprintf("%d", c.Cost()))
-	params.Set("fpt", strings.ToLower(c.Type().String()))
-
 	encodedFingerprint := Base64UrlEncode(c.Fingerprint())
-	uri := url.URL{
-		Scheme:   "ni",
-		Path:     "/sha-256;" + encodedFingerprint,
-		RawQuery: params.Encode(),
-	}
-
-	return uri.String()
+	uri := fmt.Sprintf("ni:///sha-256;%s?fpt=%s&cost=%d", encodedFingerprint, strings.ToLower(c.Type().String()), c.Cost())
+	return uri
 }
 
 func (c *Conditions) buildASN1Context() *asn1.Context {
